@@ -7,3 +7,5 @@ R codes used in Ma, R., Cai, T. T., and Li, H. (2021) Global and Simultaneous Hy
 2. simulation_FDR.R contains the codes for FDR related simulations.
 3. simulation_FDV.R contains the codes for FDV related simulations.
 4. simulation_Global.R contains the codes for simulations of global testing.
+
+For further questions and inquiries, please contact Rong Ma (rongm@stanford.edu).
