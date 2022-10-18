@@ -1,5 +1,8 @@
 # Hypothesis Testing for High-Dimensional Logistic Regression
 
+<!-- badges: start -->
+  [![R-CMD-check](https://github.com/Ulthran/HDLogisticRegressionTest/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Ulthran/HDLogisticRegressionTest/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 
 R codes used in Ma, R., Cai, T. T., and Li, H. (2021) Global and Simultaneous Hypothesis Testing for High-Dimensional Logistic Regression Models.  Journal of the American Statistical Association, 116(534), 984-998
 

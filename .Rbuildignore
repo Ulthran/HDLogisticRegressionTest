@@ -1,0 +1,7 @@
+^renv$
+^renv\.lock$
+^HDLogisticRegressionTest\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^\.github$
+^codecov\.yml$

@@ -1,14 +1,23 @@
-#### Input:
-#x: n x p matrix of covariates
-#y: n dimensional vector.
-#nfolds: number of folds used for cross-validation of Lasso/logistic Lasso, default = 5
-#lambda: tuning parameter for the logistic lasso, default = NA
-#tune.1, tune.2 are tuning parameters in the nodewise lasso. Should be values between 0 and 1
-#fdr: false discovery rate for multiple testing
+#' DESCRIPTION
+#'
+#' @param x is a n x p matrix of covariates
+#' @param y is a n dimensional vector.
+#' @param nfolds is the number of folds used for cross-validation of Lasso/logistic Lasso (Default: 5)
+#' @param lambda is the tuning parameter for the logistic lasso (Default: 0)
+#' @param tune.1 is a tuning parameter in the nodewise lasso. Should be values between 1 and 2 (Default: 1.9)
+#' @param tune.2 is a tuning parameter in the nodewise lasso. Should be values between 1 and 2 (Default: 1.01)
+#' @param intercept is a boolean SOMETHING (Default: F)
+#' @param fdr is the false discovery rate for multiple testing (Default: 0.05)
+#'
+#' @return is a named list containing \itemize{
+#' \item \code{b.check} is a vector of debiased regression coefficients
+#' \item \code{M} is a vector of standardized statistics
+#' \item \code{g.p.value} is the p-value for the global testing
+#' \item \code{feature.selected} is an indicator of selected features
+#' }
 
-
-logistic.test <- function(x,y, nfolds=5, lambda = 0, 
-                          tune.1 = 1.9, tune.2 = 1.01, 
+logistic.test <- function(x, y, nfolds=5, lambda = 0,
+                          tune.1 = 1.9, tune.2 = 1.01,
                           intercept = F, fdr = 0.05){
   f = function(x){
     exp(x)/(1+exp(x))
@@ -16,19 +25,19 @@ logistic.test <- function(x,y, nfolds=5, lambda = 0,
   p = dim(x)[2]
   n = dim(x)[1]
   if(lambda == 0){
-    logistic.cv = cv.glmnet(x = x, y = y, family = "binomial", alpha = 1,  
+    logistic.cv = cv.glmnet(x = x, y = y, family = "binomial", alpha = 1,
                             intercept=intercept, nfolds = nfolds, type.measure = "class")
     lambda = logistic.cv$lambda.min
   }
-  my.logistic.fit = glmnet(x = x, y = y, family = "binomial", alpha = 1,  
+  my.logistic.fit = glmnet(x = x, y = y, family = "binomial", alpha = 1,
                            intercept=F, lambda = lambda)
   b.hat = coef(my.logistic.fit)
   print("Estimation Succeeded!")
-  
+
   W.n1 = c(exp(x%*% as.matrix(b.hat)[-1,])/(1+exp(x%*% as.matrix(b.hat)[-1,]))^2)^(-1)
   zeta.try = matrix(ncol = p,nrow =5)
   tau.try = matrix(ncol = p,nrow = 5)
-  
+
   V = matrix(ncol=n, nrow = p)
   tau = c()
   for(i in 1:p){
@@ -46,8 +55,8 @@ logistic.test <- function(x,y, nfolds=5, lambda = 0,
     tau[i] = tau.try[lambda.chosen,i]
     V[i,] = x[,i]-x[,-i]%*%nodewise.try$beta[,lambda.chosen]
   }
-  
-  
+
+
   V2 = t((t(V)*W.n1))
   #debaised estimator
   b.check = c()
@@ -55,10 +64,10 @@ logistic.test <- function(x,y, nfolds=5, lambda = 0,
     b.check[j] = b.hat[j+1]+(V2[j,]%*%(y-f(x %*% as.matrix(b.hat)[-1])))/(V[j,] %*% x[,j])
   }
   print("Bias Corrected!")
-  
-  
+
+
   M = b.check/tau
-  
+
   cutoff = function(x) p*(1-1*pchisq(x^2, df=1))/max(1,sum(abs(M) > x)) - fdr
   t = sqrt(2*log(p))
   gd= seq(0, sqrt(2*log(p)-2*log(log(p))), 0.001)
@@ -68,17 +77,9 @@ logistic.test <- function(x,y, nfolds=5, lambda = 0,
   test = c()
   test[abs(M)>t] = 1
   test[abs(M)<t] = 0
-  
-  return(list(b.check = b.check, M = M, 
+
+  return(list(b.check = b.check, M = M,
               g.p.value = 1-exp(-1/sqrt(pi)*exp(-max((b.check/tau)^2)/2)),
               feature.selected = test))
 }
-
-
-#Output
-
-#b.check: vector of debiased regression coefficients.
-#M: vector of standardized statistics.
-#g.p.value: p-value for the global testing.
-#feature.selected: indicator of selected features.
 
