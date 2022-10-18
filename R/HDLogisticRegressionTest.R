@@ -1,3 +1,5 @@
+library('glmnet')
+
 #' DESCRIPTION
 #'
 #' @param x is a n x p matrix of covariates
@@ -15,6 +17,9 @@
 #' \item \code{g.p.value} is the p-value for the global testing
 #' \item \code{feature.selected} is an indicator of selected features
 #' }
+#'
+#' @importFrom stats coef
+#' @importFrom stats pchisq
 
 logistic.test <- function(x, y, nfolds=5, lambda = 0,
                           tune.1 = 1.9, tune.2 = 1.01,
@@ -25,11 +30,11 @@ logistic.test <- function(x, y, nfolds=5, lambda = 0,
   p = dim(x)[2]
   n = dim(x)[1]
   if(lambda == 0){
-    logistic.cv = cv.glmnet(x = x, y = y, family = "binomial", alpha = 1,
+    logistic.cv = glmnet::cv.glmnet(x = x, y = y, family = "binomial", alpha = 1,
                             intercept=intercept, nfolds = nfolds, type.measure = "class")
     lambda = logistic.cv$lambda.min
   }
-  my.logistic.fit = glmnet(x = x, y = y, family = "binomial", alpha = 1,
+  my.logistic.fit = glmnet::glmnet(x = x, y = y, family = "binomial", alpha = 1,
                            intercept=F, lambda = lambda)
   b.hat = coef(my.logistic.fit)
   print("Estimation Succeeded!")
@@ -41,7 +46,7 @@ logistic.test <- function(x, y, nfolds=5, lambda = 0,
   V = matrix(ncol=n, nrow = p)
   tau = c()
   for(i in 1:p){
-    nodewise.try = glmnet(x= x[,-i], y = x[,i], family = "gaussian", alpha = 1, intercept = F, nlambda = 5, standardize = F)
+    nodewise.try = glmnet::glmnet(x= x[,-i], y = x[,i], family = "gaussian", alpha = 1, intercept = F, nlambda = 5, standardize = F)
     for(lambda.i in 1:5){
       V[i,] = x[,i]-x[,-i]%*%nodewise.try$beta[,lambda.i]
       zeta.try[lambda.i,i] = max(abs(as.vector(V[i,]%*%x[,-i])/sqrt(sum((V[i,])^2*W.n1))))
