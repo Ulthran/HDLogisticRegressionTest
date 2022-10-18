@@ -2,7 +2,7 @@
 
 <!-- badges: start -->
   [![R-CMD-check](https://github.com/Ulthran/HDLogisticRegressionTest/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Ulthran/HDLogisticRegressionTest/actions/workflows/R-CMD-check.yaml)
-  [![test-coverage](https://github.com/Ulthran/HDLogisticRegressionTest/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/Ulthran/HDLogisticRegressionTest/actions/workflows/test-coverage.yaml)
+  [![test-coverage](https://github.com/Ulthran/HDLogisticRegressionTest/actions/workflows/test-coverage.yaml/badge.svg)](https://app.codecov.io/gh/Ulthran/HDLogisticRegressionTest)
   [![pkgdown](https://github.com/Ulthran/HDLogisticRegressionTest/actions/workflows/pkgdown.yaml/badge.svg)](https://ulthran.github.io/HDLogisticRegressionTest)
 <!-- badges: end -->
 
