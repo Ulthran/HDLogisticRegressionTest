@@ -94,7 +94,7 @@ test_that("simulation_FDV produces good results", {
     Sig <- bdiag(rep(list(sig1), 10)) + diag(rep(0.9, p))
 
     n <- c(400, 600, 800, 1000)
-    for(o in 1:100) {
+    for(o in 1:4) {
       X <- mvrnorm(n[o], mu = rep(0, p), Sigma = 0.01*Sig)
       while(length(which(abs(X %*% b) > 3)) > 0) {
         X[which(abs(X %*% b) > 3),] <- mvrnorm(length(which(abs(X %*% b) > 3)), mu = rep(0, p), Sigma = 0.01*Sig)
