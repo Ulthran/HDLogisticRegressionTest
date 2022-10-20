@@ -2,7 +2,7 @@ library('glmnet')
 
 #' DESCRIPTION
 #'
-#' @param x is a n x p matrix of covariates
+#' @param X is a n x p matrix of covariates
 #' @param y is a n dimensional vector.
 #' @param nfolds is the number of folds used for cross-validation of Lasso/logistic Lasso (Default: 5)
 #' @param lambda is the tuning parameter for the logistic lasso (Default: 0)
@@ -85,7 +85,7 @@ logistic.test <- function(X, y, nfolds = 5, lambda = 0,
   test[abs(M)>t] <- 1
   test[abs(M)<t] <- 0
 
-  return(list(b.check = b.check, M = M,
+  return(list(b.check = b.check, M = M, tau = tau,
               g.p.value = 1-exp(-1/sqrt(pi)*exp(-max((b.check/tau)^2)/2)),
               feature.selected = test))
 }

@@ -22,9 +22,9 @@ test_that("simulation_FDV produces good results", {
 
     n <- c(400, 600, 800, 1000)
     for(o in 1:4) {
-      X <- mvrnorm(n[o], mu = rep(0, p), Sigma = 0.01*Sig)
+      X <- MASS::mvrnorm(n[o], mu = rep(0, p), Sigma = 0.01*Sig)
       while(length(which(abs(X %*% b) > 3)) > 0) {
-        X[which(abs(X %*% b) > 3),] <- mvrnorm(length(which(abs(X %*% b) > 3)), mu = rep(0, p), Sigma = 0.01*Sig)
+        X[which(abs(X %*% b) > 3),] <- MASS::mvrnorm(length(which(abs(X %*% b) > 3)), mu = rep(0, p), Sigma = 0.01*Sig)
       }
       prob <- exp(X %*% b) / (1 + exp(X %*% b))
       y <- rep(1, n[o])
