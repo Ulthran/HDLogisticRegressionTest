@@ -5,7 +5,7 @@
 \title{DESCRIPTION}
 \usage{
 logistic.test(
-  x,
+  X,
   y,
   nfolds = 5,
   lambda = 0,
@@ -16,7 +16,7 @@ logistic.test(
 )
 }
 \arguments{
-\item{x}{is a n x p matrix of covariates}
+\item{X}{is a n x p matrix of covariates}
 
 \item{y}{is a n dimensional vector.}
 
