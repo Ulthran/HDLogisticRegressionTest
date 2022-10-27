@@ -21,6 +21,7 @@ Suggests:
     knitr,
     knockoff,
     MASS,
+    pak,
     parallel,
     Rfast,
     rmarkdown,
