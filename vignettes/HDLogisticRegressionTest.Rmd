@@ -1,0 +1,31 @@
+---
+title: "HDLogisticRegressionTest"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{HDLogisticRegressionTest}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(HDLogisticRegressionTest)
+```
+
+## Introduction
+
+
+
+## Installation
+
+
+
+## Usage
+
+Common usage examples

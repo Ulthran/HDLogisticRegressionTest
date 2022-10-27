@@ -6,11 +6,17 @@
   [![pkgdown](https://github.com/Ulthran/HDLogisticRegressionTest/actions/workflows/pkgdown.yaml/badge.svg)](https://ulthran.github.io/HDLogisticRegressionTest)
 <!-- badges: end -->
 
-R codes used in Ma, R., Cai, T. T., and Li, H. (2021) Global and Simultaneous Hypothesis Testing for High-Dimensional Logistic Regression Models.  Journal of the American Statistical Association, 116(534), 984-998
+R codes used in Ma, R., Cai, T. T., and Li, H. (2021) Global and Simultaneous Hypothesis Testing for High-Dimensional Logistic Regression Models. Journal of the American Statistical Association, 116(534), 984-998
 
-1. main_fun.R is the script for a unified R function logistic.test that incorporates our proposed methods and can be used conveniently.
-2. simulation_FDR.R contains the codes for FDR related simulations.
-3. simulation_FDV.R contains the codes for FDV related simulations.
-4. simulation_Global.R contains the codes for simulations of global testing.
+## Installation
 
-For further questions and inquiries, please contact Rong Ma (rongm@stanford.edu).
+The development version can be installed from GitHub with:
+
+```r
+# install.packages("devtools")
+devtools::install_github("Ulthran/HDLogisticRegressionTest")
+```
+
+## Documentation
+
+See the [GitHub Pages site](https://ulthran.github.io/TransLasso/) for function documentation. See vignettes for further usage information. Please cite [Global and Simultaneous Hypothesis Testing for High-Dimensional Logistic Regression Models](https://arxiv.org/abs/1805.06970) by Rong Ma, T. Tony Cai, & Hongzhe Li.

@@ -1,10 +1,15 @@
 Package: HDLogisticRegressionTest
-Title: What the Package Does (One Line, Title Case)
+Title: Global and Simultaneous Hypothesis Testing for High-Dimensional Logistic Regression Models
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    c(
+      person("Rong", "Ma", , "rongm@pennmedicine.upenn.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-9248-8503")),
+      person("Tony", "Cai", , "tcai@wharton.upenn.edu", role = "aut", comment = c(ORCID = "0000-0002-1673-6296")),
+      person("Hongzhe", "Li", , "hongzhe@pennmedicine.upenn.edu", role = "aut", comment = c(ORCID = "0000-0003-3662-3907"))
+    )
+Description: A test statistic for testing the global null hypothesis using a generalized low-dimensional projection for bias correction and its asymptotic null distribution.  For testing the individual coefficients simultaneously, multiple testing procedures that are shown to control the false discovery rate (FDR) and falsely discovered variables (FDV) asymptotically.
+URL: https://ulthran.github.io/HDLogisticRegressionTest, https://github.com/Ulthran/HDLogisticRegressionTest
+BugReports: ISSUESLINKONCEREPONOTFORKED
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -13,11 +18,14 @@ Suggests:
     covr,
     doParallel,
     foreach,
+    knitr,
     knockoff,
     MASS,
     parallel,
     Rfast,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Imports: 
     glmnet
+VignetteBuilder: knitr
