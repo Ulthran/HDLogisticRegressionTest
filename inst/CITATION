@@ -1,0 +1,13 @@
+citHeader("To cite HDLogisticRegressionTest in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = "Global and Simultaneous Hypothesis Testing for High-Dimensional Logistic Regression Models",
+  author   = "Rong Ma, T. Tony Cai, Hongzhe Li",
+  journal  = "Journal of the American Statistical Association",
+  year     = "2021",
+  volume   = "116",
+  pages    = "984-998",
+  url      = "https://doi.org/10.1080/01621459.2019.1699421",
+  textVersion = "Ma R, Cai TT and Li H (2021): Global and Simultaneous Hypothesis Testing for High-Dimensional Logistic Regression Models. Journal of the American Statistical Association, 116: 984-998."
+)
